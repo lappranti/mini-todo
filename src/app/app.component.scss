@@ -1,0 +1,444 @@
+//## Layout
+
+$Mobile: 475px;
+$Desktop: 1440px;
+
+$coutainer-width: calc(540 / 16) * 1rem;
+
+$radius: 5px;
+
+//## Colors
+
+//### Primary
+
+$BrightBlue: hsl(220, 98%, 61%);
+
+$linearColor: linear-gradient(
+  to right,
+  hsl(192, 100%, 67%),
+  hsl(280, 87%, 65%)
+);
+
+@mixin linearBg {
+  background: linear-gradient(
+    to right,
+    hsl(192, 100%, 67%),
+    hsl(280, 87%, 65%)
+  );
+}
+
+//### Neutral
+
+//### Light Theme
+
+$VeryLightGray: hsl(0, 0%, 98%);
+$VeryLightGrayishBlue: hsl(236, 33%, 92%);
+$LightGrayishBlue: hsl(233, 11%, 84%);
+$DarkGrayishBlue: hsl(236, 9%, 61%);
+$VeryDarkGrayishBlue: hsl(235, 19%, 35%);
+
+//### Dark Theme
+
+$VeryDarkBlue: hsl(235, 21%, 11%);
+$VeryDarkDesaturatedBlue: hsl(235, 24%, 19%);
+$LightGrayishBlue: hsl(234, 39%, 85%);
+$LightGrayishBluehover: hsl(236, 33%, 92%);
+$DarkGrayishBlue: hsl(234, 11%, 52%);
+$VeryDarkGrayishBlue: hsl(233, 14%, 35%);
+$VeryDarkGrayishBlue: hsl(237, 14%, 26%);
+
+//## Typography
+
+//### Body Copy
+
+$Fontsize: 18px;
+
+.wrapper {
+  width: 100vw;
+  height: 100vh;
+
+  display: flex;
+  justify-content: center;
+  padding-top: 62px;
+
+  &.dark {
+    background-color: $VeryDarkBlue;
+    background-image: url("../assets/img/bg-desktop-dark.jpg");
+    @media only screen and (max-width: $Mobile) {
+      background-image: url("../assets/img/bg-mobile-dark.jpg");
+    }
+    background-position: top;
+    background-repeat: no-repeat;
+    background-size: contain;
+
+    .element {
+      background: #25273d;
+      box-shadow: 0px 35px 50px -15px rgba(0, 0, 0, 0.5);
+
+      color: #c8cbe7;
+    }
+
+    .bottom {
+      color: #5b5e7e;
+
+      .status,
+      .btn-clear {
+        &:hover {
+          color: #e3e4f1;
+        }
+      }
+    }
+
+    .date,
+    .footer {
+      color: #5b5e7e;
+    }
+
+    .edited {
+      background-color: #25273d;
+      input {
+        color: #e3e4f1;
+      }
+    }
+  }
+
+  &.light {
+    background-color: $VeryLightGray;
+    background-image: url("../assets/img/bg-desktop-light.jpg");
+    @media only screen and (max-width: $Mobile) {
+      background-image: url("../assets/img/bg-mobile-light.jpg");
+    }
+    background-position: top;
+    background-repeat: no-repeat;
+    background-size: contain;
+
+    .element {
+      background: #ffffff;
+      box-shadow: 0px 35px 50px -15px rgba(194, 195, 214, 0.5);
+
+      color: #494c6b;
+    }
+
+    .bottom {
+      color: #9495a5;
+
+      .status,
+      .btn-clear {
+        &:hover {
+          color: #494c6b;
+        }
+      }
+    }
+
+    .date,
+    .footer {
+      color: #9495a5;
+    }
+
+    .edited {
+      background-color: #ffff;
+      input {
+        color: #494c6b;
+      }
+    }
+  }
+
+  .container {
+    width: $coutainer-width;
+    height: calc(100vh - 62px - 52px);
+
+    display: flex;
+    flex-direction: column;
+
+    row-gap: 24px;
+
+    .header {
+      display: flex;
+      flex-direction: column;
+      row-gap: 40px;
+
+      .title-contaainer {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        color: #ffff;
+      }
+
+      .container-search {
+        height: 64px;
+        width: 100%;
+
+        position: relative;
+
+        display: flex;
+        align-items: center;
+      }
+
+      .title {
+        font-weight: 700;
+        font-size: 40px;
+        line-height: 40px;
+
+        letter-spacing: 15px;
+
+        @media only screen and (max-width: $Mobile) {
+          font-size: 24px;
+          line-height: 24px;
+          letter-spacing: 8px;
+        }
+      }
+
+      .btn-toggle-theme {
+        font-size: 21px;
+        cursor: pointer;
+      }
+    }
+
+    input {
+      width: 100%;
+      height: 100%;
+
+      padding: 0;
+      padding-left: calc(72 / 16) * 1rem;
+
+      font-weight: 400;
+      font-size: 18px;
+      line-height: 18px;
+
+      @media only screen and (max-width: $Mobile) {
+        font-weight: 400;
+        font-size: 12px;
+        line-height: 12px;
+        /* identical to box height */
+
+        letter-spacing: -0.166667px;
+      }
+
+      letter-spacing: -0.25px;
+      border: none;
+      border-radius: 5px;
+
+      background-color: transparent;
+
+      &::placeholder {
+        color: #9495a5;
+      }
+    }
+
+    .circle {
+      height: 24px;
+      width: 24px;
+
+      border: 1px solid #e3e4f1;
+      border-radius: 50%;
+
+      position: absolute;
+      left: 24px;
+      cursor: pointer;
+
+      color: #9495a5;
+
+      &__task {
+        i {
+          display: none;
+        }
+        &:hover {
+          border-color: $BrightBlue;
+        }
+
+        &--check {
+          border: none;
+          @include linearBg;
+
+          display: flex;
+          align-items: center;
+          justify-content: center;
+
+          i {
+            display: block;
+            color: #ffffff;
+            font-size: 21px;
+          }
+        }
+      }
+    }
+
+    .main {
+      display: flex;
+      flex-direction: column;
+
+      .task-container {
+        height: 64px;
+        width: 100%;
+
+        border-bottom: 1px solid #393a4b;
+
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        position: relative;
+
+        padding-left: 72px;
+        padding-right: 24px;
+
+        &:nth-of-type(1) {
+          border-radius: 5px 5px 0 0;
+        }
+        .task-content {
+          display: flex;
+          flex-direction: column;
+          row-gap: 6px;
+          .content {
+            font-weight: 400;
+            font-size: 18px;
+            line-height: 18px;
+            /* identical to box height */
+
+            letter-spacing: -0.25px;
+
+            @media only screen and (max-width: $Mobile) {
+              font-weight: 400;
+              font-size: 12px;
+              line-height: 12px;
+              /* identical to box height */
+
+              letter-spacing: -0.166667px;
+            }
+          }
+
+          .date {
+            font-weight: 400;
+            font-size: 14px;
+            line-height: 14px;
+            /* identical to box height */
+
+            letter-spacing: -0.194444px;
+
+            @media only screen and (max-width: $Mobile) {
+              font-size: 10px;
+              line-height: 10px;
+            }
+          }
+        }
+
+        .btn-groups {
+          display: flex;
+          column-gap: 1rem;
+          font-size: 21px;
+
+          span {
+            display: inline-block;
+            cursor: pointer;
+
+            &:nth-of-type(1) {
+              &:hover {
+                color: $BrightBlue;
+              }
+            }
+            &:nth-of-type(2) {
+              &:hover {
+                color: rgb(225, 54, 54);
+              }
+            }
+          }
+        }
+
+        .edite-task {
+          position: absolute;
+          top: 0;
+          width: 100%;
+
+          left: 0;
+          bottom: 0;
+
+          display: flex;
+          align-items: center;
+
+          .btns {
+            position: absolute;
+            right: 24px;
+
+            display: flex;
+            align-items: center;
+            column-gap: 16px;
+
+            .save {
+              color: green;
+              cursor: pointer;
+            }
+
+            .resete {
+              color: red;
+              cursor: pointer;
+            }
+
+            i {
+              font-size: 24px;
+            }
+          }
+          input {
+            background-color: transparent;
+            outline-color: transparent;
+          }
+        }
+      }
+
+      .bottom {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        padding: 0 24px;
+        height: 56px;
+        width: 100%;
+
+        border-radius: 0 0 5px 5px;
+
+        font-weight: 400;
+        font-size: 14px;
+        line-height: 14px;
+        /* identical to box height */
+
+        letter-spacing: -0.194444px;
+
+        @media only screen and (max-width: $Mobile) {
+          font-weight: 400;
+          font-size: 12px;
+          line-height: 12px;
+          /* identical to box height */
+
+          letter-spacing: -0.166667px;
+        }
+
+        .status {
+          font-weight: 700;
+
+          &.active {
+            color: $BrightBlue;
+          }
+        }
+
+        .btn-group-status {
+          display: flex;
+          column-gap: 18px;
+        }
+
+        .status,
+        .btn-clear {
+          cursor: pointer;
+        }
+      }
+    }
+
+    .footer {
+      font-weight: 400;
+      font-size: 14px;
+      line-height: 14px;
+      /* identical to box height */
+
+      text-align: center;
+      letter-spacing: -0.194444px;
+    }
+  }
+}

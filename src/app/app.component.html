@@ -1,0 +1,86 @@
+<div class="wrapper" [ngClass]="isDark ? 'dark' : 'light'">
+  <div class="container">
+    <div class="header">
+      <div class="title-contaainer">
+        <h1 class="title">TODO</h1>
+        <span class="btn-toggle-theme" (click)="handleToggleTheme()">
+          <i
+            class="bi"
+            [ngClass]="isDark ? 'bi-brightness-high-fill' : 'bi-moon-fill'"
+          ></i>
+          <i class="bi"></i>
+        </span>
+      </div>
+      <div class="container-search element">
+        <input
+          type="text"
+          placeholder="Create a new todo…"
+          [(ngModel)]="newTaskDescription"
+          #input="ngModel"
+          class="element"
+          (change)="AddNewTask(input.value)"
+          autofocus
+        />
+        <span class="circle"></span>
+      </div>
+    </div>
+    <div class="main">
+      <div
+        class="task-container element"
+        *ngFor="let task of taskLis; let i = index"
+      >
+        <span
+          class="circle circle__task"
+          (click)="handleCompletedTask(task)"
+          [ngClass]="task.isCompleted ? 'circle__task--check' : ''"
+        >
+          <i class="bi bi-check"></i>
+        </span>
+        <div class="task-content">
+          <span class="content">{{ task.description }}</span
+          ><span class="date">{{ task.date | date : "dd-MM-YYYY" }}</span>
+        </div>
+        <span class="btn-groups">
+          <span (click)="handleEditeTask(task)">
+            <i class="bi bi-pencil-square"></i>
+          </span>
+          <span (click)="deleteTask(task)">
+            <i class="bi bi-trash"></i>
+          </span>
+        </span>
+
+        <div class="edite-task edited" *ngIf="task == editingTask">
+          <input
+            type="text"
+            [value]="task.description"
+            [(ngModel)]="editingTaskDescription"
+          />
+          <span class="btns">
+            <span class="save" (click)="handleEditeTaskContent(task)">
+              <i class="bi bi-file-earmark-check-fill"></i>
+            </span>
+            <span class="resete" (click)="handleCanncelEdite()"
+              ><i class="bi bi-file-earmark-excel-fill"></i>
+            </span>
+          </span>
+        </div>
+      </div>
+      <div class="bottom element">
+        <span class="nbr-task"> {{ copyTaskList.length }} items left </span>
+        <span class="btn-group-status">
+          <span
+            class="status"
+            *ngFor="let status of statusList; let i = index"
+            [id]="status"
+            (click)="handleSelectStatus(status)"
+            >{{ status }}</span
+          >
+        </span>
+        <span class="btn-clear" (click)="handleClearAll()">
+          Clear Completed
+        </span>
+      </div>
+    </div>
+    <div class="footer">@less 2023 (CRUD)</div>
+  </div>
+</div>
